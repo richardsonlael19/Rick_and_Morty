@@ -1,0 +1,8 @@
+npm --v : verifica se o node está instalado na máquina
+
+npm install ou  nodemon -g : instalar o pacote global. nodemon vai fazer a atualização do servidor automaticamente
+
+npm run : para rodar qualquer coisa
+
+*****LEMBRAR DE INICIAR PELO NODEMON
+
