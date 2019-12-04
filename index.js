@@ -23,7 +23,7 @@ class Http {
   
 
     personagem() {
-            this.xmlRequest('GET', 'https://bibipecasapi.azurewebsites.net/api/v1/parts/plate/hyp0327?partName=jta%20cabecote&key=99ab20b2efd04848b6c70d5f9a62873d&token=d77af425057d473bb284007c93439d650ada19a1e728465d9cf815eeed5d75f6&debug=true')
+            this.xmlRequest('GET', 'https://rickandmortyapi.com/api/episode')
                 .then(dados => {
                         document.querySelector("#tabela").innerHTML = `
                 <table class="table">
@@ -41,7 +41,7 @@ class Http {
                 ${
                     dados.results.map(item =>{
             return ` 
-             <a class="dropdown-item tabela" onclick="request.pegar('${item.name}')"> ${item.name} </a>`
+             <a class="dropdown-item tabela" onclick="request.pegar('${item.url}')"> ${item.episode}- ${item.name} </a>`
             }).join("")
            
             } `
@@ -54,11 +54,13 @@ class Http {
 
 }
 
-pegar(id) {
-    this.xmlRequest('GET', 'https://bibipecasapi.azurewebsites.net/api/v1/parts/plate/hyp0327?partName=jta%20cabecote&key=99ab20b2efd04848b6c70d5f9a62873d&token=d77af425057d473bb284007c93439d650ada19a1e728465d9cf815eeed5d75f6&debug=true').then(dados => {
- 
+pegar(url) {
+    
+    this.xmlRequest('GET', 'https://rickandmortyapi.com/api/episode').then(dados => {
+
         dados.results.forEach(topico => {
-            if (topico.name === id) {
+            if (topico.url == url) {
+                
                 console.log(topico.name)
                 document.querySelector("#tabela").innerHTML = `
         <table class="table">
@@ -74,16 +76,13 @@ pegar(id) {
         </thead>
         <tbody id="tabela2"></tbody>
     
-    <tbody>
-            ${  ` <tr>
-                    <td>${topico.name}</td>
-                    <td>${topico.status}</td>
-                    <td>${topico.gender}</td>
-                    <td><img src="${topico.image}" alt="..." class="img-thumbnail" height="50" width="50"></td>
-                   
-                    </tr>`
-            }
-            </tbody>
+        <tbody>
+        ${ dados.results.map(item =>{
+            return  ` <tr>
+                <td>${item.characters}</td>
+                </tr>`
+            }).join('')}
+        </tbody>
         </table>`
                 
             }
@@ -96,9 +95,9 @@ pequisanome(event){
     let $ = document.querySelector.bind(document);
     var nome = $(".nome").value;
 
-    this.xmlRequest('GET', 'https://bibipecasapi.azurewebsites.net/api/v1/parts/plate/hyp0327?partName=jta%20cabecote&key=99ab20b2efd04848b6c70d5f9a62873d&token=d77af425057d473bb284007c93439d650ada19a1e728465d9cf815eeed5d75f6&debug=true').then(dados => {
+    this.xmlRequest('GET', 'https://rickandmortyapi.com/api/character/').then(dados => {
        
-        dados.Vehicle.forEach(pesquisa => { 
+        dados.results.forEach(pesquisa => { 
             if (pesquisa.name === nome ){
       document.querySelector("#tabela").innerHTML = `
         <table class="table">
@@ -115,10 +114,10 @@ pequisanome(event){
     
     <tbody>
             ${  ` <tr>
-                    <td>${pesquisa.Brand}</td>
-                    <td>${pesquisa.Brand}</td>
-                    <td>${pesquisa.Brand}</td>
-                    <td><img src="${pesquisa.Brand}" alt="..." class="img-thumbnail" height="50" width="50"></td>
+                    <td>${pesquisa.name}</td>
+                    <td>${pesquisa.status}</td>
+                    <td>${pesquisa.gender}</td>
+                    <td><img src="${pesquisa.image}" alt="..." class="img-thumbnail" height="50" width="50"></td>
                    
                     </tr>`
             }
@@ -137,7 +136,7 @@ pequisanome(event){
     
  epsodios() {
 
-    this.xmlRequest('GET','https://bibipecasapi.azurewebsites.net/api/v1/parts/plate/hyp0327?partName=jta%20cabecote&key=99ab20b2efd04848b6c70d5f9a62873d&token=d77af425057d473bb284007c93439d650ada19a1e728465d9cf815eeed5d75f6&debug=true').then(dados =>{
+    this.xmlRequest('GET','https://rickandmortyapi.com/api/episode').then(dados =>{
         document.querySelector("#tabela").innerHTML = `
         <table class="table">
     
@@ -154,10 +153,10 @@ pequisanome(event){
     <tbody>
             ${ dados.results.map(item =>{
                 return  ` <tr>
-                    <td>${item.Brand}</td>
-                    <td>${item.Brand}</td>
-                    <td>${item.Brand}</td>
-                    <td>${item.Brand}</td>
+                    <td>${item.name}</td>
+                    <td>${item.air_date}</td>
+                    <td>${item.episode}</td>
+                    <td>${item.created}</td>
                     </tr>`
                 }).join('')}
             </tbody>
@@ -172,7 +171,7 @@ pequisanome(event){
 
 
 localizacao(){
-    this.xmlRequest('GET','https://bibipecasapi.azurewebsites.net/api/v1/parts/plate/hyp0327?partName=jta%20cabecote&key=99ab20b2efd04848b6c70d5f9a62873d&token=d77af425057d473bb284007c93439d650ada19a1e728465d9cf815eeed5d75f6&debug=true').then(dados =>{
+    this.xmlRequest('GET','https://rickandmortyapi.com/api/location').then(dados =>{
         document.querySelector("#tabela").innerHTML = `
         <table class="table">
     
