@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <title>Naruto-Pedia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1 class="text-center">RICK AND MORTY</h1>
+
+    <div class="container">
+        <div class="text-center">
+            <button type="button" onclick="request.personagem()" class="btn btn-success" >Personagens</button>
+            <button type="button" onclick="request.epsodios()" class="btn btn-success" >Episódios</button>
+            <button type="button" onclick="request.localizacao()" class="btn btn-success">Localização</button>
+        </div>
+        <br><br><br><br><br>
+ 
+
+        <form class="pt-4" onsubmit="request.pequisanome(event)">
+            <div class="form-group row justify-content-center">
+              <label for="inputEmail3" class=" col-form-label mx-3">Palavra chave</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control  nome" placeholder="Nome do personagem">
+              </div>
+              <div class="col-sm-1">
+                  <button  type="submit" class="btn btn-outline-primary">Buscar</button>
+                </div>
+            </div>
+            </form>
+
+        <button class="btn btn-secondary dropdown-toggle" onclick="request.personagem()" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            Personagens 
+           </button>
+
+           <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
+            <input class="form-group mx-4" placeholder="pesquisa">
+           <div id="oi"></div>
+        </div>
+
+        <div id="tabela"></div>
+
+    </div>
+</body>
+</table>
+<script src="index.js"></script>
+<script>
+    var request = new Http();
+</script>
+
+</body>
+
+</html>
